@@ -10,9 +10,7 @@
   </head>
 
   <body>
-    <header
-      class="flex justify-around items-center h-32"
-    >
+    <header class="flex justify-around items-center h-32">
       <!-- タイトル -->
       <h1 class="justify-start text-3xl">Player data</h1>
       <!-- メニュー -->
@@ -33,35 +31,13 @@
 
     <main>
       <div class="">
-        <ul id="list" class="grid-cols-3">
+        <ul id="list" class="">
           <!-- ここに選手データが表示される -->
-          <!-- 名前 -->
-          <li id="name"><a href="" class=""></a></li>
-          <!-- 国 -->
-          <li id="country"><a href="" class="">COUNTRY</a></li>
-          <!-- チーム -->
-          <li><a href="" class="">TEAM</a></li>
-          <!-- 生年月日 -->
-          <li><a href="" class="">BIRTH</a></li>
         </ul>
-      </div>
-      <div class="input-area">
-        <input
-          id="title"
-          type="text"
-          placeholder="タイトルを入力"
-          class="flex justify-center items-center"
-        />
-        <textarea id="text" placeholder="本文を入力"></textarea>
-      </div>
-
-      <div class="button-area">
-        <button id="save">セーブ</button>
-        <button id="clear">全て削除</button>
       </div>
     </main>
 
-    <ul id="list" class="grid-template-rows: repeat(3, minmax(0, 1fr));">
+    <ul id="memo" class="grid-template-rows: repeat(3, minmax(0, 1fr));">
       <!-- ここに追加データが挿入される -->
     </ul>
     <footer
