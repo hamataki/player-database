@@ -69,6 +69,7 @@ for (let i = 0; i < 13; i++) {
   const con = country[0];
   const tem = team[i];
   const bth = birth[i];
+  const profileUrl = url[i];
 
   //名前，国，チーム，生年月日
   const html = `
@@ -78,57 +79,79 @@ for (let i = 0; i < 13; i++) {
           <p>${"Country:" + con}</p>
           <p>${"Team:" + tem}</p>
           <p>${"Birth:" + bth}</p>
+          <a href="${profileUrl}" target="_blank">プロフィールを見る</a>
+        </li>
         </li>
         <input
-          id="in"
-          type="text"
-          placeholder="タイトルを入力"
-          class="flex justify-center items-center p-5 w-1/2"
+         id="title-${i}"
+         type="text"
+         placeholder="タイトルを入力"
+         class="flex justify-center items-center p-5 w-1/2"
         />
         <textarea
-         id="bun"
+         id="text-${i}"
          placeholder="本文を入力"
          class="justify-center items-center p-5 w-full"></textarea>
-        <button id="save">セーブ</button>
-        <button id="clear">全て削除</button>
+        <button class="save-btn" data-index="${i}">セーブ</button>
+        <button id="clear-${i}">削除</button>
     </div>
           `;
   $("#list").append(html);
-
-  // //1.Save クリックイベント
-  // $("#save").on("click", function () {
-  //   const key = $("#title").val();
-  //   const value = $("#text").val();
-
-  //   localStorage.setItem(key, value);
-  //   const html = `
-  //       <li>
-  //         <p>${key}</p>
-  //         <p>${value}</p>
-  //       </li>
-  //       `;
-  //   $("#list").append(html);
-  // });
-
-  // //2.clear クリックイベント
-  // $("#clear").on("click", function () {
-  //   localStorage.clear();
-  //   $("#list").empty();
-  // });
-
-  // //3.ページ読み込み：保存データ取得表示
-  // for (let i = 0; i < localStorage.length; i++) {
-  //   const key = localStorage.key(i);
-  //   console.log(key, "鍵の名前");
-  //   const value = localStorage.getItem(key);
-  //   const h = `
-  //       <li>
-  //         <p>${key}</p>
-  //         <p>${value}</p>
-  //       </li>
-  //       `;
-  //   $("#nemo").append(h);
-  // }
 }
 
+// Save クリックイベント
+$("#save-" + i).on("click", function () {
+  const index = $(this).data("index");
+  const key = $("#title-" + index).val();
+  const value = $("#text-" + index).val();
+  if (key && value) {
+    localStorage.setItem(key, value);
+    $("#memo").append(`<p>${key}: ${value}</p>`);
+  } else {
+    alert("タイトルと本文を入力してください。");
+  }
+});
 
+// Clear クリックイベント
+$("#clear-" + index).on("click", function () {
+  const index = $(this).data("index");
+  const key = $("#title-" + index).val();
+  if (key) {
+    localStorage.removeItem(key);
+    location.reload(); // ページをリロードして表示を更新
+  } else {
+    alert("タイトルを入力してください。");
+  }
+});
+
+// ページ読み込み：保存データ取得表示
+for (let i = 0; i < localStorage.length; i++) {
+  const key = localStorage.key(i);
+  const value = localStorage.getItem(key);
+  $("#memo").append(`<p>${key}: ${value}</p>`);
+}
+
+// //1.Save クリックイベント
+// $("#save").on("click", function () {
+//   const key = $("#title").val();
+//   const value = $("#text").val();
+//   localStorage.setItem(key, value);
+//   $("#memo").append(html);
+
+// });
+
+// //2.clear クリックイベント
+// $("#clear").on("click", function () {
+//   localStorage.clear();
+//   $("#title").empty();
+//   $("#text").empty();
+// });
+
+// //3.ページ読み込み：保存データ取得表示
+// for (let i = 0; i < localStorage.length; i++) {
+//   const key = localStorage.key(i);
+//   console.log(key, "鍵の名前");
+//   const value = localStorage.getItem(key);
+
+//   $("#memo").append(html);
+// }
