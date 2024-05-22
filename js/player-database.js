@@ -73,27 +73,33 @@ for (let i = 0; i < 13; i++) {
 
   //名前，国，チーム，生年月日
   const html = `
-    <div class="scroll-m-1 rounded-3xl p-5 shadow-lg grid-cols-3">
-        <li class="p-5">
-          <p>${"Name:" + nam}</p>
-          <p>${"Country:" + con}</p>
-          <p>${"Team:" + tem}</p>
-          <p>${"Birth:" + bth}</p>
-          <a href="${profileUrl}" target="_blank">プロフィールを見る</a>
-        </li>
-        </li>
-        <input
-         id="title-${i}"
-         type="text"
-         placeholder="タイトルを入力"
-         class="flex justify-center items-center p-5 w-1/2"
-        />
-        <textarea
-         id="text-${i}"
-         placeholder="本文を入力"
-         class="justify-center items-center p-5 w-full"></textarea>
+    <div class="mx-1 my-4 p-5 border-2 rounded-3xl shadow-md grid-cols-3 w-5/12">
+      <li class="p-5">
+        <p id="name-${i}">${"Name:" + nam}</p>
+        <p>${"Country:" + con}</p>
+        <p>${"Team:" + tem}</p>
+        <p>${"Birth:" + bth}</p>
+        <a href="${profileUrl}" target="_blank">プロフィールを見る</a>
+      </li>
+      </li>
+      <input
+        id="title-${i}"
+        type="text"
+        placeholder="タイトルを入力"
+        class="flex justify-center items-center p-5 w-1/2"
+      />
+      <textarea
+        id="text-${i}"
+        placeholder="本文を入力"
+        class="justify-center items-center p-5 w-full"></textarea>
+      <div class="flex justify-end m-2">
+      <div class="p-2">
         <button class="save-btn" data-index="${i}">セーブ</button>
+      </div>
+      <div class="p-2">
         <button class="clear-btn" data-index="${i}">削除</button>
+      </div>
+      </div>
     </div>
           `;
   $("#list").append(html);
@@ -102,11 +108,21 @@ for (let i = 0; i < 13; i++) {
 // Save クリックイベント
 $(document).on("click", ".save-btn", function () {
   const index = $(this).data("index");
+  const n = $("#name-" + index).attr("nam");
   const key = $("#title-" + index).val();
   const value = $("#text-" + index).val();
   if (key && value) {
-    localStorage.setItem(key, value);
-    $("#memo").append(`<p>${key}: ${value}</p>`);
+    localStorage.setItem(n, key, value);
+    $("#memo").append(
+      `
+    <div class="border-2 scroll-m-1 rounded-3xl p-5 w-2/5 shadow-lg grid-cols-3">
+    <li class="p-2">
+    <p>${n + "選手"}</p>
+    <P>${key}: ${value}</p>
+    </li>
+    </div>
+    `
+    );
   } else {
     alert("タイトルと本文を入力してください。");
   }
@@ -124,9 +140,19 @@ $(document).on("click", ".clear-btn", function () {
 
 // ページ読み込み：保存データ取得表示
 for (let i = 0; i < localStorage.length; i++) {
+
   const key = localStorage.key(i);
   const value = localStorage.getItem(key);
-  $("#memo").append(`<p>${key}: ${value}</p>`);
+  $("#memo").append(
+    ` 
+    <div class="border-2 scroll-m-1 rounded-3xl p-5 w-2/5 shadow-lg grid-cols-3">
+    <li class="p-2">
+    <p>${ + "選手"}</p>
+    <P>${key}: ${value}</p>
+    </li>
+    </div>
+    `
+  );
 }
 
 // 全てClear クリックイベント
@@ -134,4 +160,3 @@ $("#clear").on("click", function () {
   localStorage.clear();
   $("#memo").empty();
 });
-
