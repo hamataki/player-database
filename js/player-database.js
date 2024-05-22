@@ -93,14 +93,14 @@ for (let i = 0; i < 13; i++) {
          placeholder="本文を入力"
          class="justify-center items-center p-5 w-full"></textarea>
         <button class="save-btn" data-index="${i}">セーブ</button>
-        <button id="clear-${i}">削除</button>
+        <button class="clear-btn" data-index="${i}">削除</button>
     </div>
           `;
   $("#list").append(html);
 }
 
 // Save クリックイベント
-$("#save-" + i).on("click", function () {
+$(document).on("click", ".save-btn", function () {
   const index = $(this).data("index");
   const key = $("#title-" + index).val();
   const value = $("#text-" + index).val();
@@ -113,15 +113,13 @@ $("#save-" + i).on("click", function () {
 });
 
 // Clear クリックイベント
-$("#clear-" + index).on("click", function () {
+$(document).on("click", ".clear-btn", function () {
   const index = $(this).data("index");
   const key = $("#title-" + index).val();
-  if (key) {
-    localStorage.removeItem(key);
-    location.reload(); // ページをリロードして表示を更新
-  } else {
-    alert("タイトルを入力してください。");
-  }
+  const value = $("#text-" + index).val();
+
+  localStorage.removeItem(key, value);
+  location.reload(); // ページをリロードして表示を更新
 });
 
 // ページ読み込み：保存データ取得表示
@@ -131,27 +129,9 @@ for (let i = 0; i < localStorage.length; i++) {
   $("#memo").append(`<p>${key}: ${value}</p>`);
 }
 
-// //1.Save クリックイベント
-// $("#save").on("click", function () {
-//   const key = $("#title").val();
-//   const value = $("#text").val();
-//   localStorage.setItem(key, value);
-//   $("#memo").append(html);
+// 全てClear クリックイベント
+$("#clear").on("click", function () {
+  localStorage.clear();
+  $("#memo").empty();
+});
 
-// });
-
-// //2.clear クリックイベント
-// $("#clear").on("click", function () {
-//   localStorage.clear();
-//   $("#title").empty();
-//   $("#text").empty();
-// });
-
-// //3.ページ読み込み：保存データ取得表示
-// for (let i = 0; i < localStorage.length; i++) {
-//   const key = localStorage.key(i);
-//   console.log(key, "鍵の名前");
-//   const value = localStorage.getItem(key);
-
-//   $("#memo").append(html);
-// }
