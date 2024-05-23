@@ -73,7 +73,7 @@ for (let i = 0; i < 13; i++) {
 
   //名前，国，チーム，生年月日
   const html = `
-    <div class="mx-1 my-4 p-5 border-2 rounded-3xl shadow-md grid-cols-3 w-5/12">
+    <div class="mx-1 my-4 p-5 border-2 rounded-3xl shadow-md grid-cols-3 md:w-5/12">
       <li class="p-5">
         <p id="name-${i}">${"Name:" + nam}</p>
         <p>${"Country:" + con}</p>

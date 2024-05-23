@@ -12,12 +12,12 @@
   <body>
     <header class="flex justify-around items-center h-32">
       <!-- タイトル -->
-      <h1 class="justify-start text-3xl">Player data</h1>
+      <h1 class="justify-start m-2 text-[min(5vw,32px)]">Player data</h1>
       <!-- メニュー -->
       <section id="navi">
         <nav class="text-xl">
-          <h2 class="text-center">地域</h2>
-          <ul class="flex flex space-x-6 list-none">
+          <h2 class="text-center text-[min(3vw,20px)]">地域</h2>
+          <ul class="flex flex space-x-6 list-none text-[min(3vw,20px)]">
             <li><a href="" class="">Europe</a></li>
             <li><a href="" class="">Asia</a></li>
             <li><a href="" class="">North America</a></li>
@@ -31,7 +31,7 @@
 
     <main>
       <div class="">
-        <ul id="list" class="flex flex-wrap justify-around">
+        <ul id="list" class="md:flex flex-wrap justify-around">
           <!-- ここに選手データが表示される -->
         </ul>
       </div>
@@ -40,8 +40,9 @@
     <ul id="memo" class="flex flex-wrap justify-around">
       <!-- ここに追加データが挿入される -->
     </ul>
-    <button id="clear" class="m-4">全て削除</button>
-
+    <div class="text-right m-4">
+      <button id="clear" class="">全て削除</button>
+    </div>
     <footer
       class="flex justify-center items-center h-32 bg-no-repeat bg-cover bg-center"
     >
