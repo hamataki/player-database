@@ -125,8 +125,15 @@ for (let i = 0; i < 13; i++) {
 
 // Save クリックイベント
 $(document).on("click", ".save-btn", function () {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const date = today.getDate();
+
   const index = $(this).data("index");
-  const key = $("#name-" + index).text();
+  const key = [
+    year + "/" + month + "/" + date + " " + $("#name-" + index).text(),
+  ];
   const value = [$("#title-" + index).val() + ":" + $("#text-" + index).val()];
 
   if (key && value) {
@@ -149,7 +156,9 @@ $(document).on("click", ".save-btn", function () {
 // Clear クリックイベント
 $(document).on("click", ".clear-btn", function () {
   const index = $(this).data("index");
-  const key = $("#name-" + index).text();
+  const key = [
+    year + "/" + month + "/" + date + " " + $("#name-" + index).text(),
+  ];
   const value = [$("#title-" + index).val() + ":" + $("#text-" + index).val()];
 
   localStorage.removeItem(key, value);
