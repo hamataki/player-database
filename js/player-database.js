@@ -2,6 +2,22 @@
 //2. for文で選手の名前
 
 //リストの作成
+let imge = [
+  "https://img.a.transfermarkt.technology/portrait/header/331560-1682591217.jpg?lm=1", //0
+  "https://img.a.transfermarkt.technology/portrait/header/504849-1642264453.jpg?lm=1", //1
+  "https://img.a.transfermarkt.technology/portrait/header/146310-1657181542.jpg?lm=1", //2
+  "https://img.a.transfermarkt.technology/portrait/header/387191-1693899437.jpg?lm=1", //3
+  "https://img.a.transfermarkt.technology/portrait/header/295060-1671479611.jpg?lm=1", //4
+  "https://img.a.transfermarkt.technology/portrait/header/617408-1709162238.jpg?lm=1", //5
+  "https://img.a.transfermarkt.technology/portrait/header/346647-1547463086.jpg?lm=1", //6
+  "https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1", //7
+  "https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1", //8
+  "https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1", //9
+  "https://img.a.transfermarkt.technology/portrait/header/791690-1649401563.jpg?lm=1", //10
+  "https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1", //11
+  "https://img.a.transfermarkt.technology/portrait/header/default.jpg?lm=1", //12
+];
+
 let player = [
   "冨安 健洋", //0
   "三笘 薫", //1
@@ -65,6 +81,7 @@ let url = [
 ];
 
 for (let i = 0; i < 13; i++) {
+  const img = imge[i];
   const nam = player[i];
   const con = country[0];
   const tem = team[i];
@@ -75,6 +92,7 @@ for (let i = 0; i < 13; i++) {
   const html = `
     <div class="mx-1 my-4 p-5 border-2 rounded-3xl shadow-md grid-cols-3 md:w-5/12 hover:scale-105">
       <li class="p-5">
+        <img src="${img}" alt="" class="w-1/4">
         <p id="name-${i}">${"Name:" + nam}</p>
         <p>${"Country:" + con}</p>
         <p>${"Team:" + tem}</p>
