@@ -136,7 +136,7 @@ $(document).on("click", ".save-btn", function () {
     <div class="border-2 scroll-m-1 rounded-3xl p-5 w-2/5 shadow-lg grid-cols-3">
     <li class="p-2">
     <p>${key}</p>
-    <P>${value}</p>
+    <p>${value}</p>
     </li>
     </div>
     `
